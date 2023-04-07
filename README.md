@@ -1,6 +1,6 @@
 # GPT-Link API
 
-This repository contains a simple Express application that provides an API to interact with OpenAI models like GPT-4. The application is available at https://gpt-link.simplifieduser.com. Please note that this project is not affiliated in any way with OpenAI.
+This repository contains a simple application that provides an API to interact with OpenAI models like GPT-4. The application is available at https://gpt-link.simplifieduser.com. Please note that this project is not affiliated in any way with OpenAI.
 
 ## Getting Started
 
@@ -35,17 +35,24 @@ The API will return a JSON object containing the answer from the selected model:
 
 ## Error Handling
 
-- If you don't provide the auth field in the request, the API will return a 401 Unauthorized status.
 - If you don't provide the question field in the request, the API will return a 400 Bad Request status.
+- If you don't provide the auth field in the request, the API will return a 401 Unauthorized status.
 - If there's an issue with the OpenAI API, the response will contain the corresponding status code.
+- If there's any other unexpected server side issue, the API will retrun a 500 Internal Server Error status.
 
 ## Running Locally
 
-To run the application locally, you'll need to have Node.js installed. Clone the repository, install the dependencies, and start the server:
+To run the application locally, you'll need to have Node.js installed. Clone the repository, install the dependencies, and build the project:
 
 ```bash
-git clone https://github.com/simplifieduser/gpt-link.git
+git clone https://github.com/yourusername/gpt-link.git
 cd gpt-link
 npm install
-npm start
+npm run build
+```
+
+Now you can preview (and run) the application locally with the following command:
+
+```bash
+npm run preview
 ```
