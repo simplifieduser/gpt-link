@@ -1,38 +1,51 @@
-# create-svelte
+# GPT-Link API
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This repository contains a simple Express application that provides an API to interact with OpenAI models like GPT-4. The application is available at https://gpt-link.simplifieduser.com. Please note that this project is not affiliated in any way with OpenAI.
 
-## Creating a project
+## Getting Started
 
-If you're seeing this, you've probably already done this step. Congrats!
+To use this API, you'll need to send a POST request to the following endpoint:
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+https://gpt-link.simplifieduser.com/
 
-# create a new project in my-app
-npm create svelte@latest my-app
+The request must include a JSON payload containing the following fields:
+
+- `auth`: Your OpenAI API key.
+- `question`: The question you want to ask the selected model.
+
+Optionally, you can also provide a `model` field to specify a different model (default is "gpt-4"):
+
+```json
+{
+  "auth": "your_openai_api_key",
+  "question": "What is the capital of France?",
+  "model": "gpt-4"
+}
 ```
 
-## Developing
+## Response
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+The API will return a JSON object containing the answer from the selected model:
 
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+```json
+{
+  "answer": "The capital of France is Paris."
+}
 ```
 
-## Building
+## Error Handling
 
-To create a production version of your app:
+- If you don't provide the auth field in the request, the API will return a 401 Unauthorized status.
+- If you don't provide the question field in the request, the API will return a 400 Bad Request status.
+- If there's an issue with the OpenAI API, the response will contain the corresponding status code.
+
+## Running Locally
+
+To run the application locally, you'll need to have Node.js installed. Clone the repository, install the dependencies, and start the server:
 
 ```bash
-npm run build
+git clone https://github.com/simplifieduser/gpt-link.git
+cd gpt-link
+npm install
+npm start
 ```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
