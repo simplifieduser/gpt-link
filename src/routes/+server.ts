@@ -12,7 +12,7 @@ export async function POST({ request }) {
     throw error(400)
   }
 
-  if (data.message === undefined) throw error(400)
+  if (data.question === undefined) throw error(400)
   if (data.auth === undefined) throw error(401)
   
   const config = new Configuration({ apiKey: data.auth })
@@ -23,7 +23,7 @@ export async function POST({ request }) {
   try {
     answer = await openai.createChatCompletion({
       model: data.model || "gpt-4",
-      messages: [{ role: "user", content: data.message }]
+      messages: [{ role: "user", content: data.question }]
     })
   }
   catch (exe: any) {
